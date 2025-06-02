@@ -2,10 +2,11 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 import { createUser, getUsers } from './userController';
 
 const env = process.env.API_ENV; // 'stg'
-const usersRoute = `/${env}/api/v1/users`;
+const usersRoute = `/api/v1/users`;
 
 export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
-  console.log('event >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', event);
+  console.log('event >>>', event.path);
+  console.log('event >>>', event.httpMethod);
 
   if (event.path === usersRoute && event.httpMethod === 'POST') {
     return await createUser(event);
