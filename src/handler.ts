@@ -5,8 +5,7 @@ const env = process.env.API_ENV; // 'stg'
 const usersRoute = `/${env}/api/v1/users`;
 
 export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
-  console.log('Received path: >>>>>>>>', event.path);
-  console.log('Received method: >>>>>>>>', event.httpMethod);
+  console.log('event >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', event);
 
   if (event.path === usersRoute && event.httpMethod === 'POST') {
     return await createUser(event);
