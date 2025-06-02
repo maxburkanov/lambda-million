@@ -2,10 +2,10 @@ import { pool } from './db';
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 
 export const createUser = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
-  const { name, email } = JSON.parse(event.body || '{}');
+  const { name, email, passwordHash, phone } = JSON.parse(event.body || '{}');
   const res = await pool.query(
-    'INSERT INTO users (name, email) VALUES ($1, $2) RETURNING *',
-    [name, email]
+    'INSERT INTO users (name, email, password_hash, phone) VALUES ($1, $2, $3, $4) RETURNING *',
+    [name, email, passwordHash, phone]
   );
 
   return {
