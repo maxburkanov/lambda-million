@@ -10,7 +10,7 @@ export const createUser = async (event: APIGatewayProxyEvent): Promise<APIGatewa
 
   return {
     statusCode: 201,
-    body: JSON.stringify(res.rows[0]),
+    body: JSON.stringify({name, email, passwordHash, phone}),
   };
 };
 
@@ -21,4 +21,8 @@ export const getUsers = async (): Promise<APIGatewayProxyResult> => {
     statusCode: 200,
     body: JSON.stringify(res.rows),
   };
+  // return {
+  //   statusCode: 200,
+  //   body: JSON.stringify([{ name: 'John Doe', email: 'some@email.com', passwordHash: 'hashed-password', phone: '55555555' }]),
+  // };
 };
